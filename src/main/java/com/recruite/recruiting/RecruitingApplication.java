@@ -29,10 +29,9 @@ public class RecruitingApplication {
         return args -> {
             recruiterService.addARecruiter(
                     new Recruiter(
-
                             1,
                             "zk@gmail.com",
-                            applicationConfig.passwordEncoder().encode("katlife"),
+                            "katlife",
                             "0631703116",
                             "https://www.google.com/url?sa=i&url=https%3A%2F%2Fcomicbook.com%2Fgaming%2Fnews%2Fleague-of-legends-yasuo-origins%2F&psig=AOvVaw3ZLFuDeULVFofHlnOSDCcN&ust=1672413657822000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCJia9MGQn_wCFQAAAAAdAAAAABAJ",
                             Role.RECRUITER,

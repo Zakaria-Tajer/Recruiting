@@ -7,7 +7,7 @@ import java.util.Date;
 
 
 @Data
-public class AuthTokenResponse {
+public class AuthTokenResponse extends Throwable {
 
 
     private boolean tokenIsValid;

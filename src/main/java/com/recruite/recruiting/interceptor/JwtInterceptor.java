@@ -1,6 +1,7 @@
 package com.recruite.recruiting.interceptor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.recruite.recruiting.authResponse.AuthTokenResponse;
 import com.recruite.recruiting.authResponse.AuthenticationResponse;
 import com.recruite.recruiting.security.JwtService;
 import com.recruite.recruiting.services.RecruiterService;
@@ -34,30 +35,29 @@ public class JwtInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        log.info("preHandle invoked: " + " " + request.getRequestURI().toString());
-
-        if (!Objects.equals(request.getRequestURI(), "/api/v1/recruiter/login")) {
-
-            String token = request.getHeader("Authorization").substring(7);
-
-            String email = jwtService.extractUsername(token);
-
-            UserDetails userDetails = userDetailsService.loadUserByUsername(email);
-
-
-            boolean tokenIsValid = jwtService.isTokenValid(token,userDetails);
-
-            if(tokenIsValid){
-                System.out.println("it is valid baiitch");
-                recruiterService.isTokenValid(tokenIsValid, Date.from(Instant.now()), 200, "success" ,"auth");
-            }
-
-//            new AuthenticationResponse(token, Date.from(Instant.now()), 200, "success" ,"auth");
-            return tokenIsValid;
-
-
-
-        }
+//        log.info("preHandle invoked: " + " " + request.getRequestURI().toString());
+//
+//        if (!Objects.equals(request.getRequestURI(), "/api/v1/recruiter/login")) {
+//
+//            String token = request.getHeader("Authorization").substring(7);
+//
+//            String email = jwtService.extractUsername(token);
+//
+//            UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+//
+//
+//            boolean tokenIsValid = jwtService.isTokenValid(token,userDetails);
+//
+//            if(tokenIsValid){
+//                System.out.println("it is valid baiitch");
+//                recruiterService.isTokenValid(tokenIsValid, Date.from(Instant.now()), 200, "success" ,"auth");
+//            }
+//
+//            return tokenIsValid;
+//
+//
+//
+//        }
         return true;
     }
 
