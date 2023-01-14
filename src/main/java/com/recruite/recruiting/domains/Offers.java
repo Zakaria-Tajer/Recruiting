@@ -36,7 +36,7 @@ public class Offers {
     private OffersStatus status;
 
     @ManyToOne(cascade = CascadeType.ALL)
-//    @JsonIgnore
+    @JsonIgnore
     private Recruiter recruiterChief;
 
 

@@ -1,9 +1,13 @@
 package com.recruite.recruiting;
 
+import com.recruite.recruiting.domains.Offers;
 import com.recruite.recruiting.domains.Recruiter;
+import com.recruite.recruiting.enums.OffersStatus;
 import com.recruite.recruiting.enums.Role;
 import com.recruite.recruiting.security.ApplicationConfig;
 import com.recruite.recruiting.services.RecruiterService;
+import com.recruite.recruiting.services.offers.OffersService;
+import com.recruite.recruiting.services.offers.OffersServiceImp;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,6 +21,7 @@ public class RecruitingApplication {
 
 
     private final RecruiterService recruiterService;
+    private final OffersServiceImp offersServiceImp;
     private final ApplicationConfig applicationConfig;
 
     public static void main(String[] args) {
@@ -24,7 +29,7 @@ public class RecruitingApplication {
     }
 
     @Bean
-    CommandLineRunner commandLineRunner(RecruiterService recruiterService) {
+    CommandLineRunner commandLineRunner(RecruiterService recruiterService, OffersServiceImp offersServiceImp) {
 
         return args -> {
             recruiterService.addARecruiter(
@@ -40,6 +45,19 @@ public class RecruitingApplication {
 
 			);
 
+            offersServiceImp.createOffer(
+                    new Offers(
+                            1,
+                            "comicbook",
+                            "random shit",
+                            "dev",
+                            "rabat",
+                            "dosnt matter",
+                            10000,
+                            OffersStatus.UNPUBLISHED,
+                            null
+                    )
+            );
 
         };
     }

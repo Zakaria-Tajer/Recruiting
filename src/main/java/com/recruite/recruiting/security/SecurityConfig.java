@@ -39,6 +39,8 @@ public class SecurityConfig {
                 .permitAll()
                 .requestMatchers("/api/v1/recruiter/create")
                 .permitAll()
+                .requestMatchers("/api/v1/offers/**")
+                .authenticated()
                 .anyRequest()
                 .authenticated()
                 .and()
